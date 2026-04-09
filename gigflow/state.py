@@ -71,6 +71,7 @@ def ensure_state() -> None:
         "multa_perc": DEFAULT_MULTA_PERC,
         "foro": DEFAULT_FORO,
         "lang": "pt",
+        "theme": "dark",
     }
     for key, value in defaults.items():
         if key not in st.session_state:

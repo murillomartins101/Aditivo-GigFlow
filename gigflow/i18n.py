@@ -54,6 +54,18 @@ _STRINGS: dict[str, dict[str, str]] = {
         "pt": "🌐 Idioma / Language",
         "en": "🌐 Language / Idioma",
     },
+    "sidebar.theme": {
+        "pt": "🎨 Tema",
+        "en": "🎨 Theme",
+    },
+    "sidebar.theme_dark": {
+        "pt": "Escuro",
+        "en": "Dark",
+    },
+    "sidebar.theme_light": {
+        "pt": "Claro",
+        "en": "Light",
+    },
     "sidebar.general_params": {
         "pt": "Parâmetros Gerais",
         "en": "General Parameters",
