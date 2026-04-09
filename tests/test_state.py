@@ -44,6 +44,7 @@ EXPECTED_KEYS = {
     "multa_perc",
     "foro",
     "lang",
+    "theme",
 }
 
 
@@ -77,6 +78,18 @@ class TestEnsureState:
         with patch("streamlit.session_state", mock_state):
             ensure_state()
         assert mock_state["lang"] == "pt"
+
+    def test_theme_default_is_dark(self):
+        mock_state: dict = {}
+        with patch("streamlit.session_state", mock_state):
+            ensure_state()
+        assert mock_state["theme"] == "dark"
+
+    def test_does_not_overwrite_existing_theme(self):
+        mock_state: dict = {"theme": "light"}
+        with patch("streamlit.session_state", mock_state):
+            ensure_state()
+        assert mock_state["theme"] == "light"
 
     def test_enviado_default_is_false(self):
         mock_state: dict = {}

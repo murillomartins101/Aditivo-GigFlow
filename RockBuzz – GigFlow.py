@@ -16,90 +16,218 @@ from gigflow.state import ensure_state
 
 st.set_page_config(
     page_title="Rockbuzz Gigflow | Calculadora de Custos e Emissão de Contratos",
+    page_icon="🎸",
     layout="wide",
-    initial_sidebar_state="expanded",
+    initial_sidebar_state="auto",
 )
 
+# Initialise session state (sets defaults only if keys are absent)
+# Must run before CSS injection so the theme variable is available.
+ensure_state()
+
 # =========================
-# CSS Customizado
+# CSS Customizado – Responsivo, Acessível e com Suporte a Temas
 # =========================
-st.markdown("""
+_theme = st.session_state.get("theme", "dark")
+
+if _theme == "light":
+    _accent          = "#CC0000"
+    _footer_bg       = "#F0F2F6"
+    _footer_text     = "#1A1A2E"
+    _footer_border   = "#D0D0D0"
+    _success_bg      = "#D4EDDA"
+    _success_border  = "#28A745"
+    _info_bg         = "#D1ECF1"
+    _info_border     = "#17A2B8"
+    _metric_bg       = "#F0F2F6"
+    _metric_border   = "#C8CBD4"
+    _h1_color        = "#CC0000"
+    _h2_color        = "#1A1A2E"
+else:  # dark (default)
+    _accent          = "#FF4B4B"
+    _footer_bg       = "#0E1117"
+    _footer_text     = "#FAFAFA"
+    _footer_border   = "#262730"
+    _success_bg      = "#1F4D2E"
+    _success_border  = "#4CAF50"
+    _info_bg         = "#1E3A5F"
+    _info_border     = "#2196F3"
+    _metric_bg       = "#262730"
+    _metric_border   = "#3D3D3D"
+    _h1_color        = "#FF4B4B"
+    _h2_color        = "#FAFAFA"
+
+st.markdown(f"""
 <style>
-    /* Estilo do footer */
-    .footer {
+    /* ================================================================
+       Rockbuzz GigFlow – Custom Styles
+       Responsivo · Acessível · Suporte a Temas
+       ================================================================ */
+
+    /* ---------- Acessibilidade: Skip navigation ---------- */
+    .gf-skip-link {{
+        position: absolute;
+        top: -44px;
+        left: 0;
+        background: {_accent};
+        color: #FFFFFF;
+        padding: 8px 16px;
+        text-decoration: none;
+        font-weight: 600;
+        border-radius: 0 0 4px 0;
+        z-index: 10000;
+        transition: top 0.2s;
+    }}
+    .gf-skip-link:focus {{
+        top: 0;
+    }}
+
+    /* ---------- Footer ---------- */
+    .gf-footer {{
         position: fixed;
         bottom: 0;
         left: 0;
         width: 100%;
-        background-color: #0E1117;
-        color: #FAFAFA;
+        background-color: {_footer_bg};
+        color: {_footer_text};
         text-align: center;
         padding: 10px 0;
         font-size: 14px;
-        border-top: 1px solid #262730;
+        border-top: 1px solid {_footer_border};
         z-index: 999;
-    }
-
-    .footer a {
-        color: #FF4B4B;
+    }}
+    .gf-footer a {{
+        color: {_accent};
         text-decoration: none;
         font-weight: 600;
-    }
-
-    .footer a:hover {
+    }}
+    .gf-footer a:hover {{
         text-decoration: underline;
-    }
+    }}
 
-    /* Ajuste para evitar sobreposição do conteúdo com o footer */
-    .main .block-container {
+    /* ---------- Conteúdo principal (espaço para o footer) ---------- */
+    .main .block-container {{
         padding-bottom: 60px;
-    }
+    }}
 
-    /* Melhorias visuais */
-    .stMetric {
-        background-color: #262730;
+    /* ---------- Cards de métricas ---------- */
+    [data-testid="stMetric"] {{
+        background-color: {_metric_bg};
         padding: 15px;
         border-radius: 8px;
-        border: 1px solid #3D3D3D;
-    }
+        border: 1px solid {_metric_border};
+    }}
 
-    .stButton>button {
+    /* ---------- Botões ---------- */
+    .stButton > button {{
         width: 100%;
         border-radius: 6px;
         font-weight: 600;
-    }
+        /* Acessibilidade: área mínima de toque de 44 px */
+        min-height: 44px;
+    }}
 
-    h1 {
-        color: #FF4B4B;
+    /* ---------- Títulos ---------- */
+    h1 {{
+        color: {_h1_color};
         padding-bottom: 10px;
-        border-bottom: 2px solid #FF4B4B;
-    }
-
-    h2 {
-        color: #FAFAFA;
+        border-bottom: 2px solid {_h1_color};
+    }}
+    h2 {{
+        color: {_h2_color};
         margin-top: 20px;
-    }
+    }}
 
-    .success-box {
-        background-color: #1F4D2E;
+    /* ---------- Caixas de status (usadas via st.markdown) ---------- */
+    .success-box {{
+        background-color: {_success_bg};
         padding: 15px;
         border-radius: 8px;
-        border-left: 4px solid #4CAF50;
+        border-left: 4px solid {_success_border};
         margin: 10px 0;
-    }
-
-    .info-box {
-        background-color: #1E3A5F;
+    }}
+    .info-box {{
+        background-color: {_info_bg};
         padding: 15px;
         border-radius: 8px;
-        border-left: 4px solid #2196F3;
+        border-left: 4px solid {_info_border};
         margin: 10px 0;
-    }
+    }}
+
+    /* ---------- Acessibilidade: Indicadores de foco visíveis ---------- */
+    :focus-visible {{
+        outline: 3px solid {_accent} !important;
+        outline-offset: 2px !important;
+        border-radius: 3px;
+    }}
+    .stButton > button:focus-visible {{
+        outline: 3px solid {_accent} !important;
+        outline-offset: 2px !important;
+    }}
+
+    /* ================================================================
+       RESPONSIVIDADE – Tablet (≤ 768 px)
+       ================================================================ */
+    @media (max-width: 768px) {{
+        /* Padding mais compacto */
+        .main .block-container {{
+            padding: 1rem 0.75rem 70px 0.75rem;
+            max-width: 100% !important;
+        }}
+
+        /* Títulos menores */
+        h1 {{ font-size: 1.4rem !important; }}
+        h2 {{ font-size: 1.15rem !important; }}
+
+        /* Métricas legíveis em tela pequena */
+        [data-testid="stMetricValue"] {{
+            font-size: 1.1rem !important;
+        }}
+        [data-testid="stMetricLabel"] {{
+            font-size: 0.75rem !important;
+        }}
+
+        /* Tabela com scroll horizontal */
+        [data-testid="stDataEditorContainer"] {{
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+        }}
+
+        /* Botões maiores para toque */
+        .stButton > button {{
+            min-height: 48px;
+            font-size: 15px;
+        }}
+
+        /* Footer compacto */
+        .gf-footer {{
+            font-size: 12px;
+            padding: 8px 10px;
+        }}
+    }}
+
+    /* ================================================================
+       RESPONSIVIDADE – Smartphone pequeno (≤ 480 px)
+       ================================================================ */
+    @media (max-width: 480px) {{
+        h1 {{ font-size: 1.2rem !important; }}
+
+        .main .block-container {{
+            padding: 0.5rem 0.5rem 70px 0.5rem;
+        }}
+
+        [data-testid="stMetricValue"] {{
+            font-size: 1rem !important;
+        }}
+    }}
 </style>
 """, unsafe_allow_html=True)
 
-# Initialise session state (sets defaults only if keys are absent)
-ensure_state()
+# Skip-navigation link (acessibilidade para usuários de teclado/leitor de tela)
+st.markdown(
+    '<a class="gf-skip-link" href="#main-content">Ir para o conteúdo principal</a>',
+    unsafe_allow_html=True,
+)
 
 # Convenience shorthand – read current language once per run
 lang = st.session_state.get("lang", "pt")
@@ -111,7 +239,7 @@ t = lambda key: get_text(key, lang)  # noqa: E731
 # =========================
 with st.sidebar:
     try:
-        st.image("LOGO DEFINITIVO FUNDO ESCURO.png", use_column_width=True)
+        st.image("LOGO DEFINITIVO FUNDO ESCURO.png", use_container_width=True)
     except Exception:
         st.markdown("### Rockbuzz GigFlow")
 
@@ -128,6 +256,26 @@ with st.sidebar:
     new_lang = lang_options[lang_labels.index(selected_lang_label)]
     if new_lang != st.session_state.get("lang"):
         st.session_state["lang"] = new_lang
+        st.rerun()
+
+    # Theme selector
+    _theme_dark_label  = t("sidebar.theme_dark")
+    _theme_light_label = t("sidebar.theme_light")
+    _theme_options = {_theme_dark_label: "dark", _theme_light_label: "light"}
+    _current_theme_label = (
+        _theme_light_label
+        if st.session_state.get("theme") == "light"
+        else _theme_dark_label
+    )
+    _selected_theme_label = st.radio(
+        t("sidebar.theme"),
+        options=list(_theme_options.keys()),
+        index=list(_theme_options.keys()).index(_current_theme_label),
+        horizontal=True,
+    )
+    _new_theme = _theme_options[_selected_theme_label]
+    if _new_theme != st.session_state.get("theme"):
+        st.session_state["theme"] = _new_theme
         st.rerun()
 
     st.markdown("---")
@@ -215,6 +363,8 @@ with st.sidebar:
 # =========================
 # Conteúdo Principal
 # =========================
+# Anchor para o skip-link de acessibilidade
+st.markdown('<span id="main-content"></span>', unsafe_allow_html=True)
 st.title(t("app.title"))
 st.markdown(t("app.subtitle"))
 st.markdown("---")
@@ -477,8 +627,9 @@ st.session_state.df = edited_df
 # =========================
 # Footer
 # =========================
-st.markdown("""
-<div class="footer">
-    Desenvolvido por <a href="https://aditivomedia.com" target="_blank">Aditivo Media</a>
-</div>
-""", unsafe_allow_html=True)
+st.markdown(
+    '<footer class="gf-footer" role="contentinfo">'
+    'Desenvolvido por <a href="https://aditivomedia.com" target="_blank" rel="noopener noreferrer">Aditivo Media</a>'
+    "</footer>",
+    unsafe_allow_html=True,
+)
