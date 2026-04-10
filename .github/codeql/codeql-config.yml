@@ -1,8 +1,4 @@
 name: "CodeQL Config"
 
-paths:
-  - gigflow
-  - "Aditivo GigFlow.py"
-
 paths-ignore:
   - tests
