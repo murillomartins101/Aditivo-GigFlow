@@ -1,1 +1,1 @@
-# gigflow – modular package for Rockbuzz GigFlow
+# gigflow – modular package for Aditivo GigFlow

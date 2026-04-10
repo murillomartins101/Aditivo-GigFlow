@@ -1,4 +1,4 @@
-"""Session-state management for Rockbuzz GigFlow.
+"""Session-state management for Aditivo GigFlow.
 
 ``ensure_state`` is the single entry point that initialises every key in
 ``st.session_state`` with a sensible default so the rest of the app can

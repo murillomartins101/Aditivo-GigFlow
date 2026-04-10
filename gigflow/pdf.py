@@ -1,4 +1,4 @@
-"""PDF generation for Rockbuzz GigFlow.
+"""PDF generation for Aditivo GigFlow.
 
 Provides two public functions:
 
@@ -100,7 +100,7 @@ def gerar_pdf_orcamento(
     margem_pct: float = session.get("margem_pct", 0.0)
 
     elementos = []
-    elementos.append(Paragraph("<b>Rockbuzz Pay \u2013 Or\u00e7amento</b>", title_style))
+    elementos.append(Paragraph("<b>Aditivo GigFlow \u2013 Or\u00e7amento</b>", title_style))
     elementos.append(Spacer(1, 6))
 
     status_text = "ENVIADO" if session.get("enviado") else "RASCUNHO"
@@ -286,7 +286,7 @@ def gerar_pdf_contrato(
                 small,
             ),
             Paragraph(
-                f"<b>Banda RockBuzz / {banda_razao}:</b><br/><br/>{banda_resp_banda}",
+                f"<b>Banda Aditivo / {banda_razao}:</b><br/><br/>{banda_resp_banda}",
                 small,
             ),
         ]],

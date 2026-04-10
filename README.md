@@ -1,4 +1,4 @@
-# 🎸 Rockbuzz GigFlow
+# 🎸 Aditivo GigFlow
 
 **Calculadora de Cachê e Gerador de Contratos Profissionais para Músicos e Bandas**
 
@@ -21,7 +21,7 @@
 
 ## Visão Geral
 
-O **Rockbuzz GigFlow** é uma aplicação web construída com [Streamlit](https://streamlit.io/) que auxilia músicos e gestores de bandas a:
+O **Aditivo GigFlow** é uma aplicação web construída com [Streamlit](https://streamlit.io/) que auxilia músicos e gestores de bandas a:
 
 - Calcular o **custo total** de um show (músicos, transporte, alimentação, hospedagem, equipamentos, etc.);
 - Aplicar uma **margem de lucro** sobre os custos para obter o cachê proposto;
@@ -61,7 +61,7 @@ gigflow/
 ### Fluxo da Aplicação
 
 ```
-RockBuzz – GigFlow.py  (camada de interface – Streamlit)
+Aditivo GigFlow.py  (camada de interface – Streamlit)
         │
         ├── gigflow.state.ensure_state()      # Inicializa st.session_state
         ├── gigflow.i18n.get_text()           # Traduz labels da UI
@@ -90,8 +90,8 @@ RockBuzz – GigFlow.py  (camada de interface – Streamlit)
 
 ```bash
 # Clone o repositório
-git clone https://github.com/murillomartins101/Rockbuzz-GigFlow.git
-cd Rockbuzz-GigFlow
+git clone https://github.com/murillomartins101/Aditivo-GigFlow.git
+cd Aditivo-GigFlow
 
 # (Opcional) Crie um ambiente virtual
 python -m venv .venv
@@ -105,7 +105,7 @@ pip install -r requirements.txt
 ### Execução
 
 ```bash
-streamlit run "RockBuzz – GigFlow.py"
+streamlit run "Aditivo GigFlow.py"
 ```
 
 A aplicação será aberta automaticamente no navegador em `http://localhost:8501`.
@@ -153,9 +153,9 @@ O idioma é selecionado pelo usuário na barra lateral e persiste na sessão atu
 
 ```python
 "app.title": {
-    "pt": "🎸 Rockbuzz Pay",
-    "en": "🎸 Rockbuzz Pay",
-    "es": "🎸 Rockbuzz Pay",  # novo idioma
+    "pt": "🎸 Aditivo GigFlow",
+    "en": "🎸 Aditivo GigFlow",
+    "es": "🎸 Aditivo GigFlow",  # novo idioma
 },
 ```
 
@@ -174,8 +174,8 @@ SUPPORTED_LANGUAGES: dict[str, str] = {
 ## Estrutura de Arquivos
 
 ```
-Rockbuzz-GigFlow/
-├── RockBuzz – GigFlow.py   # Ponto de entrada da aplicação (UI Streamlit)
+Aditivo-GigFlow/
+├── Aditivo GigFlow.py      # Ponto de entrada da aplicação (UI Streamlit)
 ├── requirements.txt        # Dependências Python
 ├── README.md               # Esta documentação
 ├── LOGO DEFINITIVO FUNDO ESCURO.png

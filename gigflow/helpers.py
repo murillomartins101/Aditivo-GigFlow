@@ -1,4 +1,4 @@
-"""Utility helpers for Rockbuzz GigFlow."""
+"""Utility helpers for Aditivo GigFlow."""
 
 
 def brl(x: float) -> str:
