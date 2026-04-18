@@ -16,6 +16,11 @@ dist/
 build/
 *.egg-info/
 
+# Node / React
+node_modules/
+.env
+*.local
+
 # Editor
 .idea/
 .vscode/
