@@ -1,0 +1,93 @@
+@import './fonts.css';
+@import './tailwind.css';
+@import './theme.css';
+
+/* ── Mobile & global UX improvements ── */
+
+/* Smooth scrolling everywhere */
+* {
+  scroll-behavior: smooth;
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* Better box model */
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+/* Full dynamic viewport height */
+html, body, #root {
+  height: 100%;
+  height: 100dvh;
+  overscroll-behavior: none;
+}
+
+/* Remove number input spinners for cleaner look */
+input[type='number']::-webkit-inner-spin-button,
+input[type='number']::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+input[type='number'] {
+  -moz-appearance: textfield;
+}
+
+/* Custom range slider on WebKit */
+input[type='range'] {
+  -webkit-appearance: none;
+  appearance: none;
+  height: 6px;
+  border-radius: 999px;
+  background: #2a2a2a;
+  outline: none;
+}
+input[type='range']::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: #e00000;
+  cursor: pointer;
+  box-shadow: 0 0 0 3px #e0000030;
+  transition: box-shadow 0.2s;
+}
+input[type='range']::-webkit-slider-thumb:active {
+  box-shadow: 0 0 0 6px #e0000040;
+}
+input[type='range']::-moz-range-thumb {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: #e00000;
+  cursor: pointer;
+  border: none;
+}
+
+/* Hide scrollbars on horizontal scroll containers */
+.hide-scrollbar::-webkit-scrollbar { display: none; }
+.hide-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+
+/* Thinner custom scrollbar for sidebar / main */
+::-webkit-scrollbar { width: 4px; height: 4px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: #333; border-radius: 4px; }
+::-webkit-scrollbar-thumb:hover { background: #555; }
+
+/* date/time input on dark bg */
+input[type='date'],
+input[type='time'] {
+  color-scheme: dark;
+}
+
+/* Better focus ring */
+:focus-visible {
+  outline: 2px solid #e0000060;
+  outline-offset: 2px;
+}
+
+/* Prevent text selection on buttons */
+button {
+  user-select: none;
+  -webkit-user-select: none;
+}
