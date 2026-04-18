@@ -1,4 +1,4 @@
-"""Centralized constants and default data for Rockbuzz GigFlow.
+"""Centralized constants and default data for Aditivo GigFlow.
 
 All hard-coded values and default templates live here so that they
 are defined in exactly one place and can be reused across the app and

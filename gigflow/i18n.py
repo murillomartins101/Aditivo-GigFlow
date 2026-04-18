@@ -1,4 +1,4 @@
-"""Internationalisation (i18n) support for Rockbuzz GigFlow.
+"""Internationalisation (i18n) support for Aditivo GigFlow.
 
 Supported locales
 -----------------
@@ -18,8 +18,8 @@ _STRINGS: dict[str, dict[str, str]] = {
     # App-wide
     # -----------------------------------------------------------------------
     "app.title": {
-        "pt": "🎸 Rockbuzz Pay",
-        "en": "🎸 Rockbuzz Pay",
+        "pt": "🎸 Aditivo GigFlow",
+        "en": "🎸 Aditivo GigFlow",
     },
     "app.subtitle": {
         "pt": "**Calculadora de Cachê e Gerador de Contratos Profissionais**",

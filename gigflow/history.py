@@ -1,4 +1,4 @@
-"""History record management for Rockbuzz GigFlow.
+"""History record management for Aditivo GigFlow.
 
 Provides ``make_record`` which serialises the current session state and
 calculated values into a plain Python dictionary suitable for JSON

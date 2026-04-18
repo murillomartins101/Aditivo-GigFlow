@@ -1,4 +1,4 @@
-# Rockbuzz Pay – GigFlow
+# Aditivo GigFlow
 # Calculadora de custos de um show e emissão de contratos pequenos
 # -------------------------------------------------------------------------------
 import json
@@ -15,7 +15,7 @@ from gigflow.pdf import gerar_pdf_contrato, gerar_pdf_orcamento
 from gigflow.state import ensure_state
 
 st.set_page_config(
-    page_title="Rockbuzz Gigflow | Calculadora de Custos e Emissão de Contratos",
+    page_title="Aditivo GigFlow | Calculadora de Custos e Emissão de Contratos",
     page_icon="🎸",
     layout="wide",
     initial_sidebar_state="auto",
@@ -60,7 +60,7 @@ else:  # dark (default)
 st.markdown(f"""
 <style>
     /* ================================================================
-       Rockbuzz GigFlow – Custom Styles
+       Aditivo GigFlow – Custom Styles
        Responsivo · Acessível · Suporte a Temas
        ================================================================ */
 
@@ -241,7 +241,7 @@ with st.sidebar:
     try:
         st.image("LOGO DEFINITIVO FUNDO ESCURO.png", use_container_width=True)
     except Exception:
-        st.markdown("### Rockbuzz GigFlow")
+        st.markdown("### Aditivo GigFlow")
 
     st.markdown("---")
 
@@ -450,7 +450,7 @@ with col_btn1:
     st.download_button(
         label=t("main.download_quote"),
         data=pdf_orc,
-        file_name=f"Rockbuzz_Orcamento_{numero_proposta}.pdf",
+        file_name=f"Aditivo_Orcamento_{numero_proposta}.pdf",
         mime="application/pdf",
         use_container_width=True,
     )
@@ -459,7 +459,7 @@ with col_btn2:
     st.download_button(
         label=t("main.download_contract"),
         data=pdf_ctr,
-        file_name=f"Rockbuzz_Contrato_{numero_proposta}.pdf",
+        file_name=f"Aditivo_Contrato_{numero_proposta}.pdf",
         mime="application/pdf",
         use_container_width=True,
     )
@@ -481,7 +481,7 @@ hist_json = json.dumps(st.session_state.history, ensure_ascii=False, indent=2)
 colB.download_button(
     t("main.export_history"),
     data=hist_json.encode("utf-8"),
-    file_name="rockbuzz_historico.json",
+    file_name="aditivo_historico.json",
     mime="application/json",
     use_container_width=True,
 )
