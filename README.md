@@ -1,12 +1,11 @@
-# 🎸 Aditivo GigFlow
 
-**Calculadora de Cachê e Gerador de Contratos Profissionais para Músicos e Bandas**
+  # GigFlow app interface design
 
-> Desenvolvido por [Aditivo Media](https://aditivomedia.com)
+  This is a code bundle for GigFlow app interface design. The original project is available at https://www.figma.com/design/8XDaYbuMlrjdTDBUIh6fXw/GigFlow-app-interface-design.
 
----
+  ## Running the code
 
-## Sumário
+  Run `npm i` to install the dependencies.
 
 - [Visão Geral](#visão-geral)
 - [Funcionalidades](#funcionalidades)
