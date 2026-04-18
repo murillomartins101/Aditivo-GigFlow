@@ -1,12 +1,13 @@
 import React, { useRef, useEffect, useState } from 'react';
 import { X, Printer, FileText } from 'lucide-react';
-import { BudgetItem, EventInfo, TeamComposition, ContractClauses } from '../App';
+import { BudgetItem, EventInfo, TeamComposition, ContractClauses, EnergyReqs } from '../App';
 import { useIsMobile } from '../hooks/useIsMobile';
 
 interface ContractModalProps {
   type: 'budget' | 'contract';
   eventInfo: EventInfo;
   teamComposition: TeamComposition;
+  energyReqs: EnergyReqs;
   budgetItems: BudgetItem[];
   profitMargin: number;
   totalCost: number;
@@ -62,7 +63,7 @@ const numWords = (n: number): string => {
 };
 
 export function ContractModal({
-  type, eventInfo, teamComposition, budgetItems,
+  type, eventInfo, teamComposition, energyReqs, budgetItems,
   profitMargin, totalCost, profitAmount, proposedFee,
   contractClauses, onClose,
 }: ContractModalProps) {
@@ -383,7 +384,17 @@ function ContractDocument({ eventInfo, teamComposition, includedItems, totalCost
                 📍 {eventInfo.eventVenue||'____________________'}, {eventInfo.eventCity||'____________________'}/{eventInfo.eventState||'—'}<br/>
                 📅 {formatDate(eventInfo.eventDate)} às {eventInfo.eventTime||'--:--'}
               </p>
-              {eventInfo.soundLighting && <p style={{marginTop:8}}><strong>Sonorização/Iluminação:</strong> {eventInfo.soundLighting}</p>}
+              {eventInfo.soundLighting && <p style={{marginTop:8}}><strong>Responsabilidade da Banda:</strong> {eventInfo.soundLighting}</p>}
+              {eventInfo.contractingResponsibility && <p style={{marginTop:4}}><strong>Responsabilidade da Contratante:</strong> {eventInfo.contractingResponsibility}</p>}
+              {(energyReqs.tomada || energyReqs.tensao || energyReqs.aterramento || energyReqs.distMax) && (
+                <div style={{marginTop:8, padding:'8px 12px', background:'#f9f9f9', borderRadius:6, border:'1px solid #eee'}}>
+                  <strong>Requisitos de Energia (NBR 5410):</strong>
+                  {energyReqs.tomada && <p style={{margin:'4px 0 0'}}>Tomada: {energyReqs.tomada}</p>}
+                  {energyReqs.tensao && <p style={{margin:'2px 0 0'}}>Tensão: {energyReqs.tensao}</p>}
+                  {energyReqs.aterramento && <p style={{margin:'2px 0 0'}}>Aterramento: {energyReqs.aterramento}</p>}
+                  {energyReqs.distMax && <p style={{margin:'2px 0 0'}}>Distância máx. do palco: {energyReqs.distMax}</p>}
+                </div>
+              )}
             </>
           )
         },

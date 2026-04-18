@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { ChevronDown, ChevronRight, Calendar, MapPin, Users, Zap, FileText, X } from 'lucide-react';
+import { ChevronDown, ChevronRight, Calendar, MapPin, Users, Zap, FileText, X, Settings } from 'lucide-react';
 import { EventInfo, TeamComposition, EnergyReqs, ContractClauses } from '../App';
 
 interface SidebarProps {
@@ -321,10 +321,13 @@ function SidebarContent({
         <Field label="Duração do Set (min)">
           <SInput type="number" value={eventInfo.setDuration} onChange={v => upEv('setDuration', v)} placeholder="60" />
         </Field>
-        <Field label="Sonorização / Iluminação">
+      </Section>
+
+      <Section title="Equipamentos e Responsabilidades" icon={Settings} defaultOpen={true}>
+        <Field label="Responsabilidade da Banda">
           <STextarea value={eventInfo.soundLighting} onChange={v => upEv('soundLighting', v)} rows={2} />
         </Field>
-        <Field label="Obrigações do Contratante">
+        <Field label="Responsabilidade da Contratante">
           <STextarea value={eventInfo.contractingResponsibility} onChange={v => upEv('contractingResponsibility', v)} rows={2} />
         </Field>
       </Section>
@@ -345,7 +348,19 @@ function SidebarContent({
         </div>
       </Section>
 
-      <Section title="Energia (NBR 5410)" icon={Zap} defaultOpen={false}>
+      <Section title="Requisitos de Energia (NBR 5410)" icon={Zap} defaultOpen={false}>
+        <Field label="Tomada">
+          <SInput value={energyReqs.tomada} onChange={v => upEn('tomada', v)} placeholder="Ex: 20A" />
+        </Field>
+        <Field label="Tensão">
+          <SInput value={energyReqs.tensao} onChange={v => upEn('tensao', v)} placeholder="Ex: 220V" />
+        </Field>
+        <Field label="Aterramento">
+          <SInput value={energyReqs.aterramento} onChange={v => upEn('aterramento', v)} placeholder="Ex: Adequado, conforme NBR 5410" />
+        </Field>
+        <Field label="Distância máx. do palco">
+          <SInput value={energyReqs.distMax} onChange={v => upEn('distMax', v)} placeholder="Ex: 10 metros" />
+        </Field>
         <Field label="Potência do Gerador (kVA)">
           <SInput value={energyReqs.generatorPower} onChange={v => upEn('generatorPower', v)} placeholder="Ex: 30 kVA" />
         </Field>
