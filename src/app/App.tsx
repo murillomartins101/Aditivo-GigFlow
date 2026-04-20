@@ -24,7 +24,7 @@ export interface EventInfo {
   soundLighting: string; contractingResponsibility: string; setDuration: string;
 }
 export interface TeamComposition { members: number; supportTeam: number; companions: number; }
-export interface EnergyReqs { generatorPower: string; circuitBreakers: string; technicalVisit: boolean; }
+export interface EnergyReqs { generatorPower: string; circuitBreakers: string; technicalVisit: boolean; tomada: string; tensao: string; aterramento: string; distMax: string; }
 export interface ContractClauses { penaltyPercentage: number; paymentAdvance: number; venue: string; additionalClauses: string; }
 export interface Proposal {
   id: string; createdAt: string;
@@ -55,7 +55,7 @@ const DEF_EVENT: EventInfo = {
   soundLighting:'', contractingResponsibility:'', setDuration:'60',
 };
 const DEF_TEAM: TeamComposition   = { members:6, supportTeam:1, companions:0 };
-const DEF_ENERGY: EnergyReqs     = { generatorPower:'', circuitBreakers:'', technicalVisit:false };
+const DEF_ENERGY: EnergyReqs     = { generatorPower:'', circuitBreakers:'', technicalVisit:false, tomada:'20A', tensao:'220V', aterramento:'Adequado, conforme NBR 5410', distMax:'10 metros' };
 const DEF_CLAUSES: ContractClauses = { penaltyPercentage:50, paymentAdvance:50, venue:'Comarca de Jundiaí/SP', additionalClauses:'' };
 
 /* ──────────────────────────────────────────────
@@ -361,6 +361,7 @@ export default function App() {
         <ContractModal
           type={contractType}
           eventInfo={eventInfo} teamComposition={teamComposition}
+          energyReqs={energyReqs}
           budgetItems={budgetItems} profitMargin={profitMargin}
           totalCost={totalCost} profitAmount={profitAmount} proposedFee={proposedFee}
           contractClauses={contractClauses}
