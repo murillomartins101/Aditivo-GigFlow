@@ -113,6 +113,7 @@ export function ContractModal({
       ) : (
         <ContractDocument
           eventInfo={eventInfo} teamComposition={teamComposition}
+          energyReqs={energyReqs}
           includedItems={includedItems} totalCost={totalCost}
           profitMargin={profitMargin} profitAmount={profitAmount}
           proposedFee={proposedFee} advanceAmount={advanceAmount}
@@ -350,7 +351,7 @@ function BudgetDocument({ eventInfo, teamComposition, includedItems, totalCost, 
 }
 
 /* ─── Contract Document ─── */
-function ContractDocument({ eventInfo, teamComposition, includedItems, totalCost, profitMargin, profitAmount, proposedFee, advanceAmount, remainingAmount, contractClauses }: any) {
+function ContractDocument({ eventInfo, teamComposition, energyReqs, includedItems, totalCost, profitMargin, profitAmount, proposedFee, advanceAmount, remainingAmount, contractClauses }: any) {
   return (
     <div>
       <div style={{ textAlign:'center', marginBottom:24 }}>
